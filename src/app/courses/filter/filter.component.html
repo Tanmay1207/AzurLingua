@@ -1,0 +1,39 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <div class="form-group">
+    <label for="category">    {{'Category' | translate }}</label>
+    <select formControlName="category" id="category" class="form-control">
+      <option *ngFor="let category of categories" [value]="category">{{ category | translate}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="type">{{'Type' | translate }}:</label>
+    <select formControlName="type" id="type" class="form-control">
+      <option *ngFor="let type of types" [value]="type">{{ type  | translate}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="accommodation"> {{'Accommodation' | translate }}:</label>
+    <select formControlName="accommodation" id="accommodation" class="form-control">
+      <option *ngFor="let accommodation of accommodations" [value]="accommodation">{{ accommodation | translate }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="activity"> {{'Activities' | translate }}:</label>
+    <select formControlName="activity" id="activity" class="form-control">
+      <option *ngFor="let activity of activities" [value]="activity">{{ activity  | translate }}</option>
+    </select>
+  </div>
+
+  <div class="form-group" style="margin-bottom: 20px;"> <!-- Added margin-bottom here -->
+    <label for="funding"> {{'Funding' | translate }}:</label>
+    <select formControlName="funding" id="funding" class="form-control">
+      <option *ngFor="let fund of funding" [value]="fund">{{ fund  | translate}}</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">{{'Apply Filter' | translate}}</button>
+</form>

@@ -1,0 +1,84 @@
+<section class="shop-products-prvw pt20 pb60 detail-main-section">
+  <div class="container shop-container">
+    <div class="row" *ngIf="courseDetail; else elseTemplate">
+
+      <!-- {{courseDetail.content | json}} -->
+      <div class="col-lg-8">
+
+        <div *ngFor="let item of courseDetail.content">
+          <!-- {{item |json}} -->
+          <ng-container *ngIf="item.type === 'image'; else notImage">
+            <img [src]="item.src" [class]="item.class" [alt]="item.alt">
+          </ng-container>
+          <ng-template #notImage>
+            <h4 *ngIf="item.type === 'heading'; else notHeading" [class]="item.class" class="mt-20">{{ item.text }}</h4>
+            <ng-template #notHeading>
+              <p *ngIf="item.type === 'paragraph'; else notParagraph" [class]="item.class">{{ item.text }}</p>
+              <ng-template #notParagraph>
+                <!-- Handle other types of content here as needed -->
+              </ng-template>
+            </ng-template>
+          </ng-template>
+        </div>
+
+      </div>
+
+      <div class="col-lg-4">
+ 
+        <div class="rpb-item-infodv">
+          <ul>
+            <li class="price">
+              <h5 class="mb20">{{courseDetail.courseType}}</h5>
+            </li>
+
+            <li *ngFor="let item of courseDetail.description">
+              <strong>{{item.key}}:</strong>
+              <div class="nx-rt">{{ item.value }}</div>
+            </li>             
+
+            <br>
+            <li>
+              <a href="https://registration.azurlingua.com/en/adulte/2024/"   [routerLink]="['/register/', itemId ]" class="btn-main bg-btn lnk w-100">Calculate my quote<span class="circle"></span> </a>
+            </li>
+
+          </ul>
+        </div>
+
+
+
+
+        <div class="rpb-item-infodv">
+<h4 class="mb20">Accommodation</h4>
+<div class="tabs tabs-spl">
+    <a href="CampusCentral.html">CENTRAL CAMPUS</a>
+    <a href="familleadultes.html">HOST FAMILY</a>
+    <a href="factoryadultes.html">STUDENT FACTORY</a>
+    <a href="apparthotels.html">HOTELS AND APART'HOTELS</a>
+
+</div>
+</div>
+
+
+        <div class="rpb-item-infodv">
+<h4 class="mb20">Tags </h4>
+<div class="tabs tabs-spl">
+<a href="coursadultes.html">Adult courses</a>
+    <a href="coursjuniors.html">Junior courses </a>
+    <a href="coursglobales.html">Language courses</a>
+    <a href="Excursions.html">Excursions</a>
+    <a href="tarifs.html">Prices</a>
+</div>
+</div>
+
+
+
+      </div>
+    </div>
+  
+    <ng-template #elseTemplate>
+    <div class="not-found-container">
+      <img src="assets/images/404.avif" alt="404 Not Found">
+    </div>
+  </ng-template>
+  </div>
+</section>

@@ -1,0 +1,357 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <form   #f="ngForm" [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="gender">{{ 'Gender'| translate }}:</label>
+          </div>
+          <div class="col-sm-9">
+            <select formControlName="gender" id="gender" class="form-control" required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <div *ngIf="personalInfoForm.get('gender')?.invalid && personalInfoForm.get('gender')?.touched"
+              class="text-danger">
+              {{'Req' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="firstName">{{ 'First Name'| translate }}:</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="firstName" id="firstName" class="form-control" required>
+          <div *ngIf="personalInfoForm.get('firstName')?.invalid && personalInfoForm.get('firstName')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="lastName">{{ 'Last Name'| translate }}:</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="lastName" id="lastName" class="form-control" required>
+          <div *ngIf="personalInfoForm.get('lastName')?.invalid && personalInfoForm.get('lastName')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="birthDate">{{ 'Birth Date'| translate }} :</label>
+          </div>
+
+
+          <div class="col-sm-9">
+            <!-- <input type="date" formControlName="birthDate" id="birthDate" class="form-control" required> -->
+              <input type="text" class="form-control" formControlName="birthDate"
+              [bsConfig]="{ dateInputFormat: this.DATE_FORMAT }" placeholder="Select date" bsDatepicker>
+              <div *ngIf="personalInfoForm.get('birthDate')?.invalid && personalInfoForm.get('birthDate')?.touched"
+              class="text-danger">
+              {{'Req' | translate}}
+              </div>
+          </div>
+        </div>
+
+        <!-- <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="phoneNumber">{{ 'Phone Number'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="phoneNumber" id="phoneNumber" class="form-control" required>
+          <div *ngIf="personalInfoForm.get('phoneNumber')?.invalid && personalInfoForm.get('phoneNumber')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div> -->
+
+        <div class="form-group row form-group-phonenumber">
+          <div class="col-sm-3 col-text-right">
+            <label for="phoneNumber">Phone Number :</label>
+          </div>
+          <div class="col-sm-9">
+                <ngx-intl-tel-input
+              [cssClass]="'phone-number-box'"
+              [preferredCountries]="preferredCountries"
+              [enableAutoCountrySelect]="true"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [searchCountryField]="[
+                SearchCountryField.Iso2,
+                SearchCountryField.Name
+              ]"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.France"
+              [maxLength]="15"
+              [phoneValidation]="true"
+              [separateDialCode]="separateDialCode"
+              [numberFormat]="PhoneNumberFormat.National"
+              name="phone"
+              formControlName="phone"
+            >
+            </ngx-intl-tel-input>
+
+            <div *ngIf="f.form.controls['phone'].errors  && f.form.controls['phone'].touched" class="text-danger">
+              Invalid phone number format.
+            </div>
+            <!-- <div>
+              <strong>Form validation errors:</strong>
+              <pre>{{ f.form.controls['phone'].errors | json }}</pre>
+            </div> -->
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="email">{{ 'Email Address'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="email" formControlName="email" id="email" class="form-control" required>
+          <div *ngIf="personalInfoForm.get('email')?.invalid && personalInfoForm.get('email')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          <div *ngIf="personalInfoForm.get('email')?.errors?.['email']" class="text-danger">{{'InvalidFormat' |
+            translate}}</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="address">{{ 'Address'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="address" id="address" class="form-control">
+          <div *ngIf="personalInfoForm.get('address')?.invalid && personalInfoForm.get('address')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="postalCode">{{ 'Postal Code'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="postalCode" id="postalCode" class="form-control">
+          <div *ngIf="personalInfoForm.get('postalCode')?.invalid && personalInfoForm.get('postalCode')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="city">{{ 'City'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="city" id="city" class="form-control">
+          <div *ngIf="personalInfoForm.get('city')?.invalid && personalInfoForm.get('city')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="country">{{ 'Country'| translate }}:</label>
+          </div>
+          <div class="col-sm-9">
+            <select formControlName="country" id="country" class="form-control" required>
+              <option value="">Select Country</option>
+              <!-- <option *ngFor="let country of countries" [value]="country">{{ country }}</option> -->
+              <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
+            </select>
+            <div *ngIf="personalInfoForm.get('country')?.invalid && personalInfoForm.get('country')?.touched"
+              class="text-danger">
+              {{'Req' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="authorization">{{ 'Authorization'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <select formControlName="authorization" id="authorization" class="form-control" required>
+              <option value="">Select Authorization</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            <div *ngIf="personalInfoForm.get('authorization')?.invalid && personalInfoForm.get('authorization')?.touched"
+              class="text-danger">
+              {{'Req' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="emergencyPhoneNumber">{{ 'Emergency Phone Number'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" formControlName="emergencyPhoneNumber" id="emergencyPhoneNumber" class="form-control"
+            required>
+          <div
+            *ngIf="personalInfoForm.get('emergencyPhoneNumber')?.invalid && personalInfoForm.get('emergencyPhoneNumber')?.touched"
+            class="text-danger">
+            {{'Req' | translate}}
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-3 col-text-right">
+            <label for="comment">{{ 'Comment'| translate }} :</label>
+          </div>
+          <div class="col-sm-9">
+            <textarea formControlName="comment" id="comment" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <!--======================== New Radio buttons start here =================================-->
+ 
+        <div class="row align-flx-end mt-30">
+          <div class="col-md-6 tpb-1">
+            <div class="panel panel-info text-center">
+              <div class="panel-body">
+                <div class="travel-price-box">
+                  <i class="fa fa-credit-card fa-4x mb-10" style="color:#A2B5BF;"></i>
+                  <p><strong>{{ 'Day Transfer'| translate }}</strong></p>
+                  <p><strong>{{ 'Instant Validation'| translate }}</strong></p>
+                  <p>
+                    <input id="creditCardRadios" formControlName="selectedPaymentOption"
+                      (change)="onRadioButtonChange('cc')" value="cc" name="paymentRadios" type="radio">
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 tpb-2">
+            <div class="panel panel-info text-center">
+              <div class="panel-body">
+                <div class="travel-price-box">
+                  <i class="fa fa-exchange fa-4x mb-10" style="color:#A2B5BF;"></i>
+                  <p><strong>{{ 'Bank Transfer'| translate }}</strong></p>
+                  <p><strong>{{ 'Delay 15 days'| translate }}</strong></p>
+                  <p>
+                    <input id="creditCardRadios" name="paymentRadios" type="radio" (change)="onRadioButtonChange('dc')"
+                      formControlName="selectedPaymentOption" value="db">
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--================== 1st Part =====================-->
+        <h3 *ngIf="cardSelected=='cc'" class="heading-parts-demo">1. Payment</h3>
+        <div *ngIf="cardSelected=='cc'" class="row" id="credit_card_container">
+          <div class="col-md-3" style="text-align:center;">
+            <img class="img-responsive" src="assets/images/payplug.png">
+          </div>
+          <div class="col-md-9">
+            <h4>
+              <img src="assets/images/lock.png">Secured payment by credit card
+            </h4>
+            <p>You can choose between pay the totality now or only a part of the total amount.</p>
+            <!-- <select class="form-control form-control-dropdown" id="amountsSelector">
+       <option id="totality_amount_option" selected="" value="455">I want to pay the totality now.</option>
+       <option value="250">I want to pay 250€ and pay the rest after.</option>
+     </select> -->
+            <div class="form-group row">
+              <div class="col-sm-3 col-text-right">
+                <label for="country">Country:</label>
+              </div>
+              <div class="col-sm-9">
+                <select formControlName="fixPaymentOption" id="fixPaymentOption" class="form-control" required>
+                  <option id="totality_amount_option" selected="" value="1">I want to pay the totality now.</option>
+                  <option value="2">I want to pay 250€ and pay the rest after.</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3">
+                <img alt="Arrow right" class="animated flash hidden-xs img-responsive"
+                  src="assets/images/arrow-right-magenta.png">
+              </div>
+              <div class="col-md-9">
+                <div class="checkbox">
+                  <label>
+                    <h4>
+                      <input type="checkbox" formControlName="acceptGeneralConditionsCreditCard">
+                      <a href="http://www.azurlingua.co.uk/general-conditions" class="accept-terms-a" target="_blank">I
+                        accept general conditions of Azurlingua School.</a>
+                    </h4>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="text-center" id="credit_card_button_placeholder"></div>
+          </div>
+        </div>
+
+        <!--================== 2nd Part =====================-->
+        <h3 *ngIf="cardSelected=='dc'" class="heading-parts-demo">2.Payment</h3>
+        <div *ngIf="cardSelected=='dc'" class="row" id="credit_card_container">
+          <div class="col-md-3" style="text-align:center;">
+            <img class="img-responsive" src="assets/images/virement.png">
+          </div>
+          <div class="col-md-9">
+            <h4>
+              <img src="assets/images/lock.png">Secured payment by credit card
+            </h4>
+            <p>If you choose a bank transfer payment, please send us a fax to +33 497 030 703 with the bank transfer
+              proof.</p>
+            <br>
+            <div class="row">
+              <div class="col-md-3">
+                <img alt="Arrow right" class="animated flash hidden-xs img-responsive"
+                  src="assets/images/arrow-right-magenta.png">
+              </div>
+              <div class="col-md-9">
+                <div class="checkbox">
+                  <label>
+                    <h4>
+                      <input type="checkbox" formControlName="acceptGeneralConditionsCreditCard">
+                      <a href="http://www.azurlingua.co.uk/general-conditions" class="accept-terms-a" target="_blank">I
+                        accept general conditions of Azurlingua School.</a>
+                    </h4>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="text-center" id="credit_card_button_placeholder"></div>
+          </div>
+
+
+
+        </div>
+        <button type="submit" [disabled]="!isSubmitButtonEnabled()" class="btn btn-primary float-right mt-10">Submit</button>
+        <!-- {{personalInfoForm.value | json}} -->
+      </form>
+    </div>
+  </div>
+
+
+</div>

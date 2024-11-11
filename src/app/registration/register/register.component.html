@@ -1,0 +1,82 @@
+
+<!-- {{courceReg | json}}
+{{personalInfo | json}} -->
+ 
+<div class="container registration-process-box">
+  <div class="row">
+    <!-- Left Section: Steps -->
+    <div class="col-md-6">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+        <!-- Step 1: Personal Information -->
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                {{ 'Create your stay'| translate }}
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">          
+              <app-courseregistration (formSubmit)="onCourceRegitrationChange($event)"></app-courseregistration>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Additional Information -->
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                {{ 'Validate My stay' | translate }}
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              <!-- Step 2 content goes here -->
+              <app-personal-information (formSubmit)="onCourcePersonalInfoChange($event)"></app-personal-information>
+            </div>
+          </div>
+        </div>
+
+ 
+        <!-- ======================= DEMO RADIO BUTTONS ========================= -->
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingFour">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                {{ 'Receive your quote by email' | translate }}
+              </a>
+            </h4>
+          </div>
+          <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+            <div class="panel-body"> 
+              <app-quote></app-quote> 
+            </div>
+          </div>
+        </div>
+        <!-- ======================= DEMO RADIO BUTTONS ========================= -->
+
+      </div>
+    </div>
+
+    <!-- Right Section: Summary -->
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Summary</h4>
+        </div>
+        <div class="panel-body">
+          <!-- Summary content goes here -->
+           <app-summary></app-summary>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

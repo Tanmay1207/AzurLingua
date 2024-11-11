@@ -1,0 +1,56 @@
+.card-img-top-2{width:100%; transition: 0.3s;}
+.card-img-top-2:hover{transform: scale(1);}
+.courses-box-col{margin-bottom: 10px;}
+/* .card-courses{box-shadow: 0px 0px 10px grey; padding: 10px; border-radius: 10px; overflow: hidden; min-height: 422px;} */
+.card-courses h5{color: #050748; font-size: 20px;}
+.card-courses:hover{background:aliceblue;}
+.float-right{float: right;}
+/* .card-footer {display: flex; justify-content: space-between; align-items: center;} */
+
+
+/* .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }  */
+  
+  .flex-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjust column width as needed */
+    gap: 10px; /* Adjust gap between columns */
+  }
+  
+  .column {
+/* Styles for your columns */
+  /* border: 1px solid #ccc; */
+  padding: 5px;
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Arrange content vertically */
+  justify-content: space-between; /* Push content to the top and bottom */
+  min-height: 422px; /* Set a minimum height */
+  }
+
+  .card-courses {
+    /* Other styles for your card */
+    box-shadow: 0px 0px 10px grey;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange content vertically */
+    height: 100%; /* Ensure the card fills the column height */
+  }
+
+  .card-body {
+    /* Styles for the card body */
+    flex: 1; /* Allow the card body to grow to fill the available space */
+  }
+
+  .card-footer {
+    /* Styles for the card footer */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .one-column{max-width: calc((100% - 20px) / 4); /* Adjust based on the number of columns */}
+  

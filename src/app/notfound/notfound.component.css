@@ -1,0 +1,13 @@
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa; /* Light grey background */
+  }
+  
+  .not-found-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  

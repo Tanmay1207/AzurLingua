@@ -1,0 +1,51 @@
+<div class="flex-container">
+  <!-- {{ filter | json }} -->
+  <br>
+  <!-- {{pagedCourses.length  | json}} -->
+   <div class="flex-row" [ngClass]="{ 'one-column': isOneColumnLayout() }">
+        <!-- Loop through courses -->
+
+        <div class="column courses-box-col"  *ngFor="let course of pagedCourses"> 
+          <div class="card card-courses h-100" (click)="handleDivClick(course.courseId)">
+            <!-- Image -->
+            <img src="{{ course.illustration }}" class="card-img-top card-img-top-2" alt="{{ course.titre }}">
+            <div class="card-body">
+              <!-- Title -->
+              <h5 class="card-title">{{ course.category }}</h5>
+              <!-- Description -->
+              <p class="card-text">{{ course.titre }}</p>
+            </div>
+            <div class="card-footer">
+              <!-- Link to Purchase -->
+              <a href="{{ course.titre }}" class="btn btn-primary">Purchase</a>
+              <!-- Price -->
+              <span class="float-right course-price"> € {{ course.price }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+        <div *ngIf="totalItems == 0" class="alert alert-warning" role="alert">
+          No courses found.
+        </div>
+     
+      <!-- Pagination -->
+      <nav aria-label="Page navigation example" *ngIf="totalItems > 0">
+        <ul class="pagination">
+          <li class="page-item" [ngClass]="{ 'disabled': currentPage === 1 }">
+            <a class="page-link"  (click)="setPage(currentPage-1)" aria-label="Previous"  >
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item" *ngFor="let page of pages" [ngClass]="{ 'active': currentPage === page }">
+            <a class="page-link"   (click)="setPage(page)">{{ page }}</a>
+          </li>
+          <li class="page-item" [ngClass]="{ 'disabled': currentPage === totalPages }">
+            <a class="page-link"  (click)="setPage(currentPage+1)" aria-label="Next"  >
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+  
+</div>
